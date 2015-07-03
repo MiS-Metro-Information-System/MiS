@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MiS</string>
+    <string-array name="nav_drawer_titles">
+        <item>Billetera</item>
+        <item>Rutas</item>
+        <item>Tiempo</item>
+    </string-array>
 </resources>

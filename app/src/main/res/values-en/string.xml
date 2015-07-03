@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MiS</string>
+    <string-array name="nav_drawer_titles">
+        <item>Wallet</item>
+        <item>Routes</item>
+        <item>Time</item>
+    </string-array>
+</resources>
