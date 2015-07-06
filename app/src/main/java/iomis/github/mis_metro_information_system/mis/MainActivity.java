@@ -66,11 +66,13 @@ public class MainActivity  extends ActionBarActivity
                 break;
         }*/
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                //.replace(R.id.container, fragment)
-                .commit();
+
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                            //.replace(R.id.container, fragment)
+                    .commit();
+
     }
 
     public void onSectionAttached(int number) {
@@ -157,7 +159,9 @@ public class MainActivity  extends ActionBarActivity
                     rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
                     break;
                 case 2:
-                    rootView = inflater.inflate(R.layout.fragment_routes, container, false);
+                    FragmentRoutes fragment = new FragmentRoutes(this.getActivity());
+                    rootView = fragment.onCreateView(inflater,container,savedInstanceState);
+                    //rootView = inflater.inflate(R.layout.fragment_routes, container, false);
                     break;
                 case 3:
                     rootView = inflater.inflate(R.layout.fragment_time, container, false);
