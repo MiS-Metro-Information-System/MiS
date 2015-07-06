@@ -19,12 +19,12 @@ import android.view.ViewGroup;
 
 
 public class MainActivity  extends ActionBarActivity
-        implements FragmentHome.NavigationDrawerCallbacks {
+        implements FragmentWallet.NavigationDrawerCallbacks {
     public String [] menuItems;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private FragmentHome mNavigationDrawerFragment;
+    private FragmentWallet mNavigationDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -36,7 +36,7 @@ public class MainActivity  extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavigationDrawerFragment = (FragmentHome)
+        mNavigationDrawerFragment = (FragmentWallet)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 

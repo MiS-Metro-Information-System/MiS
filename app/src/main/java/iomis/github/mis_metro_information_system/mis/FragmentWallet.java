@@ -25,7 +25,7 @@ import android.widget.Toast;
 /**
  * Created by felipe.gutierrez on 03/07/2015.
  */
-public class FragmentHome extends Fragment {
+public class FragmentWallet extends Fragment {
 
     /**
      * Remember the position of the selected item.
@@ -56,7 +56,7 @@ public class FragmentHome extends Fragment {
     private boolean mFromSavedInstanceState;
     private boolean mUserLearnedDrawer;
 
-    public FragmentHome() {
+    public FragmentWallet() {
     }
 
     @Override
