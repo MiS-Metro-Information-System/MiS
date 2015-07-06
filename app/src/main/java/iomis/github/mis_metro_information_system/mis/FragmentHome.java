@@ -95,14 +95,15 @@ public class FragmentHome extends Fragment {
                 selectItem(position);
             }
         });
+        String [] menuItems = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
                 new String[]{
-                        getString(R.string.title_section1),
-                        getString(R.string.title_section2),
-                        getString(R.string.title_section3),
+                        menuItems[0],
+                        menuItems[1],
+                        menuItems[2],
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
