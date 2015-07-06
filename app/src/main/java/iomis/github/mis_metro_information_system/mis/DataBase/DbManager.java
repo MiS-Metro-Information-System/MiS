@@ -9,29 +9,30 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by felipe.gutierrez on 06/07/2015.
  */
 public class DbManager {
-    public static final String TABLE_USER = "Users";
+    public static final String TABLE_USER = DbContract.UserEntry.TABLE_NAME;
 
-    public static final String CN_USER_ID = "_id";
-    public static final String CN_USER_NAME = "username";
-    public static final String CN_EXPENDS = "expend";
+    public static final String CN_USER_ID = DbContract.UserEntry.COLUMN_USER_ID;
+    public static final String CN_USERNAME = DbContract.UserEntry.COLUMN_USERNAME";
+    public static final String CN_EXPENDS = DbContract.UserEntry.COLUMN_EXPEND;
 
-    public static final String TABLE_ROUTES = "Routes";
+    public static final String TABLE_ROUTES = DbContract.RoutesEntry.TABLE_NAME;
 
-    public static final String CN_ROUTE_ID = "_id";
-    public static final String CN_TIME = "time";
-    public static final String CN_ROUTE_NAME = "name";
-    public static final String CN_DESCRIPTION = "description";
+    public static final String CN_ROUTE_ID = DbContract.RoutesEntry.COLUMN_ROUTE_ID;
+    public static final String CN_TIME = DbContract.RoutesEntry.COLUMN_TIME;
+    public static final String CN_ROUTE_NAME = DbContract.RoutesEntry.COLUMN_NAME;
+    public static final String CN_DESCRIPTION = DbContract.RoutesEntry.COLUMN_DESCRIPTION;
     //This is other comment
 
-    public static final String CREATE_TABLE_USER = " create table "+TABLE_USER+" ("
-            +CN_USER_ID+" integer primary key not null,"
-            +CN_USER_NAME+" text not null,"
-            +CN_EXPENDS+" double );";
+    public static final String CREATE_TABLE_USER = " create table " + TABLE_USER + " ("
+            + CN_USER_ID + " integer primary key not null,"
+            + CN_USERNAME +" text not null,"
+            + CN_EXPENDS + " double );";
+
     public static final String CREATE_TABLE_ROUTES = " create table "+TABLE_ROUTES+" ("
-            +CN_ROUTE_ID+" integer primary key autoincrement,"
-            +CN_TIME+" double not null,"
-            +CN_ROUTE_NAME+" text not null,"
-            +CN_DESCRIPTION+" text );";
+            + CN_ROUTE_ID + " integer primary key autoincrement,"
+            + CN_TIME + " double not null,"
+            + CN_ROUTE_NAME + " text not null,"
+            + CN_DESCRIPTION + " text );";
 
     private DbHelper dbHelper;
     private SQLiteDatabase db;
@@ -46,7 +47,7 @@ public class DbManager {
     public ContentValues generateUser(int id, String username, double expends){
         ContentValues contentValues = new ContentValues();
         contentValues.put(CN_USER_ID, id);
-        contentValues.put(CN_USER_NAME, username);
+        contentValues.put(CN_USERNAME, username);
         contentValues.put(CN_EXPENDS, expends);
         return  contentValues;
     }
@@ -87,7 +88,7 @@ public class DbManager {
         db.delete(TABLE_USER, CN_USER_ID + " =? ", new String[]{id});
     }
     public void deletROUTE(String id){
-        db.delete(TABLE_ROUTES,CN_ROUTE_ID+" =? ", new String[]{id});
+        db.delete(TABLE_ROUTES,CN_ROUTE_ID + " =? ", new String[]{id});
     }
     /*
     * GET DATA
@@ -97,7 +98,7 @@ public class DbManager {
         return db.query(TABLE_ROUTES, columns, null, null, null, null, null);
     }
     public Cursor getUser(){
-        String [] columns = new String[]{CN_USER_ID, CN_USER_NAME, CN_EXPENDS};
+        String [] columns = new String[]{CN_USER_ID, CN_USERNAME, CN_EXPENDS};
         return db.query(TABLE_USER, columns, null, null, null, null, null);
     }
 }
