@@ -50,9 +50,26 @@ public class MainActivity  extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
+        Fragment fragment;
+        /*switch (position){
+            case 0:
+                fragment = new FragmentWallet();
+                break;
+            case 1:
+                fragment = new FragmentRoutes();
+                break;
+            case 2:
+                fragment = new FragmentTime();
+                break;
+            default:
+                fragment = new FragmentWallet();
+                break;
+        }*/
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                //.replace(R.id.container, fragment)
                 .commit();
     }
 
@@ -135,6 +152,16 @@ public class MainActivity  extends ActionBarActivity
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
+            switch (getArguments().getInt(ARG_SECTION_NUMBER)){
+                case 1:
+                    rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
+                    break;
+                case 2:
+                    rootView = inflater.inflate(R.layout.fragment_routes, container, false);
+                    break;
+                case 3:
+                    rootView = inflater.inflate(R.layout.fragment_time, container, false);
+            }
             return rootView;
         }
 
