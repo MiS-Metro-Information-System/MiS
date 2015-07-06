@@ -1,3 +1,28 @@
 <resources>
     <string name="app_name">MiS</string>
+    <string-array name="nav_drawer_items">
+        <item>Billetera</item>
+        <item>Rutas</item>
+        <item>Tiempo</item>
+    </string-array>
+<!--
+<div>Icon made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+-->
+    <array name="nav_drawer_icons">
+        <item>@mipmap/ic_wallet</item>
+        <item>@mipmap/ic_wallet</item>
+        <item>@mipmap/ic_wallet</item>
+    </array>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
 </resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="list_background">@color/material_blue_grey_800</color>
+    <color name="list_divider">@color/background_material_light</color>
+    <color name="counter_text_bg">@color/background_material_light</color>
+    <color name="list_background_pressed">@color/background_material_light</color>
+    <color name="list_item_title">@color/background_material_light</color>
+    <color name="counter_text_color">@color/background_material_light</color>
+</resources>
