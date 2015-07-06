@@ -21,6 +21,7 @@ public class DbManager {
     public static final String CN_TIME = "time";
     public static final String CN_ROUTE_NAME = "name";
     public static final String CN_DESCRIPTION = "description";
+    //This is other comment
 
     public static final String CREATE_TABLE_USER = " create table "+TABLE_USER+" ("
             +CN_USER_ID+" integer primary key not null,"

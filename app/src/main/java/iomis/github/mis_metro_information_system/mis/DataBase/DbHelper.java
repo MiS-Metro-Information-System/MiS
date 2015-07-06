@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by felipe.gutierrez on 06/07/2015.
  */
 public class DbHelper extends SQLiteOpenHelper{
+    //This is a comment
 
     public static int SCHEME_VERSION = 1;
 
