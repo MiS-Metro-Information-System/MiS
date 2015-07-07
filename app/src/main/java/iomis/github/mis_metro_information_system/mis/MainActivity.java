@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 public class MainActivity  extends ActionBarActivity
         implements FragmentWallet.NavigationDrawerCallbacks {
     public String [] menuItems;
+    public static FragmentManager fragmentManager;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -45,6 +46,7 @@ public class MainActivity  extends ActionBarActivity
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         menuItems = getResources().getStringArray(R.array.nav_drawer_items);
+        fragmentManager = getSupportFragmentManager();
     }
 
     @Override
@@ -65,14 +67,22 @@ public class MainActivity  extends ActionBarActivity
                 fragment = new FragmentWallet();
                 break;
         }*/
+        if(position+1 == 2){
+            fragment = new FragmentRoutes();
+            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+            /*FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment)
+                    .commit();*/
 
+        }else{
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                             //.replace(R.id.container, fragment)
                     .commit();
-
+        }
     }
 
     public void onSectionAttached(int number) {
@@ -159,8 +169,6 @@ public class MainActivity  extends ActionBarActivity
                     rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
                     break;
                 case 2:
-                    FragmentRoutes fragment = new FragmentRoutes(this.getActivity());
-                    rootView = fragment.onCreateView(inflater,container,savedInstanceState);
                     //rootView = inflater.inflate(R.layout.fragment_routes, container, false);
                     break;
                 case 3:

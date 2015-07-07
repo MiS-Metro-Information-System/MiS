@@ -28,8 +28,9 @@
             </intent-filter>
         </activity>
         <!-- Goolge Maps API Key -->
+        <!-- CEIBA AIzaSyB858BMD1eqSi9PRLzuZ1VzM1RKNeErklU-->
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyB858BMD1eqSi9PRLzuZ1VzM1RKNeErklU" />
+            android:value="AIzaSyC0hj-0gJ4ns82L5S0iiMwjialu3fbQCj4" />
     </application>
 </manifest>
