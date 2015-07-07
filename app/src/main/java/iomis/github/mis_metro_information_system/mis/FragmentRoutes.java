@@ -1,6 +1,5 @@
 package iomis.github.mis_metro_information_system.mis;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
@@ -77,7 +76,6 @@ public class FragmentRoutes extends Fragment implements LocationListener{
             googleMap.addMarker(markerOptions);
             estation--;
         }
-
         PolylineOptions polylineOptions = new PolylineOptions();
         polylineOptions.width(5);
         polylineOptions.color(Color.parseColor("#00FF00"));
@@ -86,7 +84,6 @@ public class FragmentRoutes extends Fragment implements LocationListener{
         }
         googleMap.addPolyline(polylineOptions);
     }
-
     @Override
     public void onResume() {
         super.onResume();
