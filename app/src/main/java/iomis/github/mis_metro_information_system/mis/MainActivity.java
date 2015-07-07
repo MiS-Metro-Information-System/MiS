@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,6 +35,7 @@ public class MainActivity  extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("TAG", "HOLA ANDROID");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -66,23 +68,23 @@ public class MainActivity  extends ActionBarActivity
             default:
                 fragment = new FragmentWallet();
                 break;
-        }*/
-        if(position+1 == 2){
+        }
+       if(position+1 == 2){
             fragment = new FragmentRoutes();
             fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
             /*FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, fragment)
-                    .commit();*/
+                    .commit();
 
-        }else{
+        }else{*/
 
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                            //.replace(R.id.container, fragment)
+                    //.replace(R.id.container, fragment )
                     .commit();
-        }
+
     }
 
     public void onSectionAttached(int number) {
@@ -166,13 +168,18 @@ public class MainActivity  extends ActionBarActivity
             View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
+
                     rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
                     break;
                 case 2:
+                    Fragment fragmentRoutes = new FragmentRoutes();
+                    rootView = fragmentRoutes.onCreateView(inflater, container,savedInstanceState);
                     //rootView = inflater.inflate(R.layout.fragment_routes, container, false);
                     break;
                 case 3:
-                    rootView = inflater.inflate(R.layout.fragment_time, container, false);
+                    Fragment fragmentTime = new FragmentTime();
+                    rootView = fragmentTime.onCreateView(inflater, container, savedInstanceState);
+                    ///rootView = inflater.inflate(R.layout.fragment_time, container, false);
             }
             return rootView;
         }

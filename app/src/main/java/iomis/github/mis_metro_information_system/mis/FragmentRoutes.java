@@ -1,17 +1,16 @@
 package iomis.github.mis_metro_information_system.mis;
 
-import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
@@ -21,9 +20,9 @@ import com.google.android.gms.maps.model.PolylineOptions;
  */
 public class FragmentRoutes extends Fragment{
     //Source http://stackoverflow.com/questions/19353255/how-to-put-google-maps-v2-on-a-fragment-using-viewpager
-    private GoogleMap googleMap;
+    private static GoogleMap googleMap;
     private static View view;
-    private static GoogleMap mMap;
+    public MapView mapView;
     private static Double latitude, longitude;
     public static Double [] coordenatesMetroStations = {6.1546144,-75.6214601,6.174159, -75.597090
     ,6.185886, -75.585556,6.193230, -75.582327,6.212216, -75.578070};
@@ -34,33 +33,45 @@ public class FragmentRoutes extends Fragment{
             return null;
         }
         view = (View) inflater.inflate(R.layout.fragment_routes, container, false);
+        mapView = (MapView)view.findViewById(R.id.map);
+        mapView.onCreate(savedInstanceState);
+        mapView.onResume();
+
+        try{
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        googleMap = mapView.getMap();
+        if(googleMap == null){}else{setUpMap();}
         // Passing harcoded values for latitude & longitude. Please change as per your need. This is just used to drop a Marker on the Map
-        setUpMapIfNeeded(); // For setting up the MapFragment
+        //setUpMapIfNeeded(); // For setting up the MapFragment
 
         return view;
     }
 
-    public void setUpMapIfNeeded() {
+   /* public void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
         if (mMap == null) {
             // Try to obtain the map from the SupportMapFragment.
             //getChildFragmentManager()
             //MainActivity.fragmentManager
-            mMap = ((SupportMapFragment) MainActivity.fragmentManager.findFragmentById(R.id.map)).getMap();
+            ((SupportMapFragment) MainActivity.fragmentManager.findFragmentById(R.id.map)).getMap();
+            Log.e("Error", mMap.toString());
             // Check if we were successful in obtaining the map.
             if (mMap != null)
                 setUpMap();
         }
-    }
+    }*/
     private static void setUpMap() {
         // For showing a move to my loction button
-        mMap.setMyLocationEnabled(true);
-        latitude = mMap.getMyLocation().getLatitude();
-        longitude = mMap.getMyLocation().getLongitude();
+        googleMap.setMyLocationEnabled(true);
+        latitude = googleMap.getMyLocation().getLatitude();
+        longitude = googleMap.getMyLocation().getLongitude();
         // For dropping a marker at a point on the Map
-        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("My Home").snippet("Home Address"));
+        googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("My Home").snippet("Home Address"));
         // For zooming automatically to the Dropped PIN Location
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,
                 longitude), 12.0f));
         PolylineOptions polylineOptions = new PolylineOptions();
         polylineOptions.width(5);
@@ -68,10 +79,10 @@ public class FragmentRoutes extends Fragment{
         for(int i = 0; i < coordenatesMetroStations.length; i=i+2){
             polylineOptions.add(new LatLng(coordenatesMetroStations[i], coordenatesMetroStations[i+1]));
         }
-        mMap.addPolyline(polylineOptions);
+        googleMap.addPolyline(polylineOptions);
     }
 
-    @Override
+   /* @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         if (mMap != null)
@@ -85,12 +96,12 @@ public class FragmentRoutes extends Fragment{
             if (mMap != null)
                 setUpMap();
         }
-    }
+    }*/
 
     /**** The mapfragment's id must be removed from the FragmentManager
      **** or else if the same it is passed on the next time then
      **** app will crash ****/
-    @Override
+   /* @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (mMap != null) {
@@ -98,5 +109,29 @@ public class FragmentRoutes extends Fragment{
                     .remove(MainActivity.fragmentManager.findFragmentById(R.id.map)).commit();
             mMap = null;
         }
+    }*/
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
     }
 }
