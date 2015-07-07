@@ -66,13 +66,13 @@ public class FragmentRoutes extends Fragment{
     private static void setUpMap() {
         // For showing a move to my loction button
         googleMap.setMyLocationEnabled(true);
-        latitude = googleMap.getMyLocation().getLatitude();
+        /*latitude = googleMap.getMyLocation().getLatitude();
         longitude = googleMap.getMyLocation().getLongitude();
         // For dropping a marker at a point on the Map
         googleMap.addMarker(new MarkerOptions().position(new LatLng(latitude, longitude)).title("My Home").snippet("Home Address"));
         // For zooming automatically to the Dropped PIN Location
         googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,
-                longitude), 12.0f));
+                longitude), 12.0f));*/
         PolylineOptions polylineOptions = new PolylineOptions();
         polylineOptions.width(5);
         polylineOptions.color(Color.parseColor("#00FF00"));

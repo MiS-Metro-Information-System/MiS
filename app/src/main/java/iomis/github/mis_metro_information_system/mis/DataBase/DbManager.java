@@ -12,7 +12,7 @@ public class DbManager {
     public static final String TABLE_USER = DbContract.UserEntry.TABLE_NAME;
 
     public static final String CN_USER_ID = DbContract.UserEntry.COLUMN_USER_ID;
-    public static final String CN_USERNAME = DbContract.UserEntry.COLUMN_USERNAME";
+    public static final String CN_USERNAME = DbContract.UserEntry.COLUMN_USERNAME;
     public static final String CN_EXPENDS = DbContract.UserEntry.COLUMN_EXPEND;
 
     public static final String TABLE_ROUTES = DbContract.RoutesEntry.TABLE_NAME;
