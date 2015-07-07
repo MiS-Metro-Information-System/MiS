@@ -6,4 +6,5 @@
         <item>Routes</item>
         <item>Time</item>
     </string-array>
+    <string name="label_wallet">Spendings :</string>
 </resources>
