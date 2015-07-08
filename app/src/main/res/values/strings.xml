@@ -23,6 +23,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="label_wallet">Gastado :</string>
+    <string name="content_authority">iomis.github.mis_metro_information_system.mis.DataBase</string>
     <string name="setting_name">Configuración</string>
-
 </resources>
