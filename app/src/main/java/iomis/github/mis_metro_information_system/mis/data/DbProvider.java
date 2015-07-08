@@ -1,23 +1,20 @@
-package iomis.github.mis_metro_information_system.mis.DataBase;
+package iomis.github.mis_metro_information_system.mis.data;
 
 import android.content.ContentProvider;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-
-import java.net.URI;
+import android.util.Log;
 
 /**
  * Created by esteban.foronda on 06/07/2015.
  */
 public class DbProvider extends ContentProvider {
-    private DbHelper dbHelper = null;
+    private DbHelper dbHelper;
     private static final int EXPENDS_LIST = 0;
     private static final int EXPENDS_ID = 1;
     private static final int ROUTE_LIST = 10;
@@ -30,11 +27,13 @@ public class DbProvider extends ContentProvider {
         URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "expends/#", EXPENDS_ID);
         URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "routes", ROUTE_LIST);
         URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "routes/#", ROUTE_ID);
+        Log.d("Uri Matcher", "Pasa por la uri");
     }
 
     @Override
     public boolean onCreate() {
         dbHelper = new DbHelper(getContext());
+        Log.d("Provider", "Esto pasa por aca");
         return true;
     }
 
@@ -48,7 +47,7 @@ public class DbProvider extends ContentProvider {
             case ROUTE_LIST:
                 builder.setTables(DbContract.RoutesEntry.TABLE_NAME);
                 if (TextUtils.isEmpty(sortOrder)) {
-                    sortOrder = DbContract.SORT_DEFAULT_ORDER;
+                    //sortOrder = DbContract.SORT_DEFAULT_ORDER;
                 }
                 break;
             case ROUTE_ID:

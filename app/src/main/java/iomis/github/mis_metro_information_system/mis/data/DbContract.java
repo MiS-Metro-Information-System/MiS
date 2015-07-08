@@ -1,4 +1,4 @@
-package iomis.github.mis_metro_information_system.mis.DataBase;
+package iomis.github.mis_metro_information_system.mis.data;
 
 /**
  * Created by esteban.foronda on 06/07/2015.
@@ -15,9 +15,9 @@ public class DbContract {
 
     //authority needed to call the content provider
     public static final String CONTENT_AUTHORITY =
-            "iomis.github.mis_metro_information_system.mis.DataBase";
+            "iomis.github.mis_metro_information_system.mis";
 
-    public static final Uri BASE_CONTENT_URI = Uri.parse("content//" + CONTENT_AUTHORITY);
+    public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final String PATH_EXPENDS = "expends";
     public static final String PATH_ROUTES = "routes";
