@@ -20,13 +20,13 @@ import android.view.ViewGroup;
 
 
 public class MainActivity  extends ActionBarActivity
-        implements FragmentWallet.NavigationDrawerCallbacks {
+        implements FragmentNavDrawer.NavigationDrawerCallbacks {
     public String [] menuItems;
     public static FragmentManager fragmentManager;
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-    private FragmentWallet mNavigationDrawerFragment;
+    private FragmentNavDrawer mNavigationDrawerFragment;
 
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
@@ -39,7 +39,7 @@ public class MainActivity  extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mNavigationDrawerFragment = (FragmentWallet)
+        mNavigationDrawerFragment = (FragmentNavDrawer)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
 
@@ -54,35 +54,9 @@ public class MainActivity  extends ActionBarActivity
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
-        Fragment fragment;
-        /*switch (position){
-            case 0:
-                fragment = new FragmentWallet();
-                break;
-            case 1:
-                fragment = new FragmentRoutes();
-                break;
-            case 2:
-                fragment = new FragmentTime();
-                break;
-            default:
-                fragment = new FragmentWallet();
-                break;
-        }
-       if(position+1 == 2){
-            fragment = new FragmentRoutes();
-            fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-            /*FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment)
-                    .commit();
-
-        }else{*/
-
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction()
                     .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                    //.replace(R.id.container, fragment )
                     .commit();
 
     }
@@ -168,18 +142,16 @@ public class MainActivity  extends ActionBarActivity
             View rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
             switch (getArguments().getInt(ARG_SECTION_NUMBER)){
                 case 1:
-
-                    rootView = inflater.inflate(R.layout.fragment_wallet, container, false);
+                    Fragment fragmentWallet = new FragmentWallet();
+                    rootView = fragmentWallet.onCreateView(inflater, container,savedInstanceState);
                     break;
                 case 2:
                     Fragment fragmentRoutes = new FragmentRoutes();
                     rootView = fragmentRoutes.onCreateView(inflater, container,savedInstanceState);
-                    //rootView = inflater.inflate(R.layout.fragment_routes, container, false);
                     break;
                 case 3:
                     Fragment fragmentTime = new FragmentTime();
                     rootView = fragmentTime.onCreateView(inflater, container, savedInstanceState);
-                    ///rootView = inflater.inflate(R.layout.fragment_time, container, false);
             }
             return rootView;
         }
