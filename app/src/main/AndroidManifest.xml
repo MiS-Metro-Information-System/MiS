@@ -27,6 +27,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SettingsActivity"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/AppTheme">
+
+        </activity>
         <!-- Goolge Maps API Key -->
         <!--keytool -list -v -keystore ~/.android/debug.keystore -alias androiddebugkey -storepass android -keypass android-->
         <!-- Foronda Ceiba -->

@@ -7,4 +7,5 @@
         <item>Time</item>
     </string-array>
     <string name="label_wallet">Spendings :</string>
+    <string name="setting_name">Settings</string>
 </resources>
