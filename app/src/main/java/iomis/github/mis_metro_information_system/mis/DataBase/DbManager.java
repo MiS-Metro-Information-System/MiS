@@ -9,13 +9,13 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by felipe.gutierrez on 06/07/2015.
  */
 public class DbManager {
-    public static final String TABLE_USER = DbContract.UserEntry.TABLE_NAME;
+    public static final String EXPEND_TABLE = DbContract.ExpendsEntry.TABLE_NAME;
 
-    public static final String CN_USER_ID = DbContract.UserEntry.COLUMN_USER_ID;
-    public static final String CN_USERNAME = DbContract.UserEntry.COLUMN_USERNAME;
-    public static final String CN_EXPENDS = DbContract.UserEntry.COLUMN_EXPEND;
+    public static final String CN_EXPEND_ID = DbContract.ExpendsEntry.COLUMN_EXPEND_ID;
+    public static final String CN_EXPEND_DATE = DbContract.ExpendsEntry.COLUMN_DATE;
+    public static final String CN_EXPENDS = DbContract.ExpendsEntry.COLUMN_EXPEND;
 
-    public static final String TABLE_ROUTES = DbContract.RoutesEntry.TABLE_NAME;
+    public static final String ROUTES_TABLE = DbContract.RoutesEntry.TABLE_NAME;
 
     public static final String CN_ROUTE_ID = DbContract.RoutesEntry.COLUMN_ROUTE_ID;
     public static final String CN_TIME = DbContract.RoutesEntry.COLUMN_TIME;
@@ -23,16 +23,16 @@ public class DbManager {
     public static final String CN_DESCRIPTION = DbContract.RoutesEntry.COLUMN_DESCRIPTION;
     //This is other comment
 
-    public static final String CREATE_TABLE_USER = " create table " + TABLE_USER + " ("
-            + CN_USER_ID + " integer primary key not null,"
-            + CN_USERNAME +" text not null,"
-            + CN_EXPENDS + " double );";
+    public static final String CREATE_EXPENDS_TABLE = " create table " + EXPEND_TABLE + " ("
+            + CN_EXPEND_ID + " INTEGER primary key not null AUTO_INCREMENT,"
+            + CN_EXPEND_DATE +" TIMESTAMP not null,"
+            + CN_EXPENDS + " DOUBLE );";
 
-    public static final String CREATE_TABLE_ROUTES = " create table "+TABLE_ROUTES+" ("
-            + CN_ROUTE_ID + " integer primary key autoincrement,"
-            + CN_TIME + " double not null,"
-            + CN_ROUTE_NAME + " text not null,"
-            + CN_DESCRIPTION + " text );";
+    public static final String CREATE_TABLE_ROUTES = " create table "+ ROUTES_TABLE +" ("
+            + CN_ROUTE_ID + " INTEGER primary key autoincrement,"
+            + CN_TIME + " DOUBLE not null,"
+            + CN_ROUTE_NAME + " TEXT not null,"
+            + CN_DESCRIPTION + " TEXT );";
 
     private DbHelper dbHelper;
     private SQLiteDatabase db;
@@ -44,10 +44,10 @@ public class DbManager {
          dbHelper = new DbHelper(context);
          db = dbHelper.getWritableDatabase();
     }
-    public ContentValues generateUser(int id, String username, double expends){
+    public ContentValues generateExpend(int id, String username, double expends){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(CN_USER_ID, id);
-        contentValues.put(CN_USERNAME, username);
+        contentValues.put(CN_EXPEND_ID, id);
+        contentValues.put(CN_EXPEND_DATE, username);
         contentValues.put(CN_EXPENDS, expends);
         return  contentValues;
     }
@@ -65,13 +65,13 @@ public class DbManager {
     /*
     * INSERTS
      */
-    public void insertUser(int id, String username, double expends){
+    public void insertExpend(int id, String username, double expends){
         // insert (String table, String nullColumnHack, ContentValues values)
-        db.insert(TABLE_USER, null, generateUser(id, username, expends));
+        db.insert(EXPEND_TABLE, null, generateExpend(id, username, expends));
     }
     public void insertRoutes(int [] ids, double [] times, String [] names, String [] descriptions){
         for(int i = 0; i < ids.length; i++){
-            db.insert(TABLE_ROUTES, null, generateRoutes(ids[i], times[i], names[i], descriptions[i]));
+            db.insert(ROUTES_TABLE, null, generateRoutes(ids[i], times[i], names[i], descriptions[i]));
         }
     }
     /*
@@ -79,26 +79,26 @@ public class DbManager {
     */
     public void updateUser(int id, String username, double expends){
         //For more than one value "IN (?, ?)"
-        db.update(TABLE_USER,generateUser(id, username, expends),CN_USER_ID+" =? ", new String[]{Integer.toString(id).trim()});
+        db.update(EXPEND_TABLE, generateExpend(id, username, expends), CN_EXPEND_ID +" =? ", new String[]{Integer.toString(id).trim()});
     }
     /*
     * DELETS
      */
     public void deletUser(String id){
-        db.delete(TABLE_USER, CN_USER_ID + " =? ", new String[]{id});
+        db.delete(EXPEND_TABLE, CN_EXPEND_ID + " =? ", new String[]{id});
     }
     public void deletROUTE(String id){
-        db.delete(TABLE_ROUTES,CN_ROUTE_ID + " =? ", new String[]{id});
+        db.delete(ROUTES_TABLE,CN_ROUTE_ID + " =? ", new String[]{id});
     }
     /*
     * GET DATA
      */
     public Cursor getRoutes(){
         String [] columns = new String [] {CN_ROUTE_ID, CN_TIME, CN_ROUTE_NAME, CN_DESCRIPTION };
-        return db.query(TABLE_ROUTES, columns, null, null, null, null, null);
+        return db.query(ROUTES_TABLE, columns, null, null, null, null, null);
     }
     public Cursor getUser(){
-        String [] columns = new String[]{CN_USER_ID, CN_USERNAME, CN_EXPENDS};
-        return db.query(TABLE_USER, columns, null, null, null, null, null);
+        String [] columns = new String[]{CN_EXPEND_ID, CN_EXPEND_DATE, CN_EXPENDS};
+        return db.query(EXPEND_TABLE, columns, null, null, null, null, null);
     }
 }

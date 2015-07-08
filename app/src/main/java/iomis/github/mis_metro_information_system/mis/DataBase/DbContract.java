@@ -19,20 +19,21 @@ public class DbContract {
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content//" + CONTENT_AUTHORITY);
 
-    public static final String PATH_USER = "user";
-    public static final String PATH_ROUTE = "routes";
+    public static final String PATH_EXPENDS = "expends";
+    public static final String PATH_ROUTES = "routes";
+    public static final String SORT_DEFAULT_ORDER = "ASC";
 
 
     /* Inner class that defines the table contents of the location table */
     public static final class RoutesEntry implements BaseColumns {
 
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_ROUTE).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_ROUTES).build();
 
         public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ROUTE;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ROUTES;
         public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ROUTE;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_ROUTES;
 
         // Table name
         public static final String TABLE_NAME = "routes";
@@ -46,21 +47,21 @@ public class DbContract {
         }
     }
 
-    public static final class UserEntry implements BaseColumns {
+    public static final class ExpendsEntry implements BaseColumns {
 
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_USER).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_EXPENDS).build();
 
         public static final String CONTENT_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USER;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_EXPENDS;
         public static final String CONTENT_ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_USER;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_EXPENDS;
 
-        public static final String TABLE_NAME = "User";
+        public static final String TABLE_NAME = "Expends";
 
-        public static final String COLUMN_USER_ID = "user_id";
-        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_EXPEND_ID = "expend_id";
         public static final String COLUMN_EXPEND = "expend";
+        public static final String COLUMN_DATE = "date";
 
         public static Uri buildUserUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
