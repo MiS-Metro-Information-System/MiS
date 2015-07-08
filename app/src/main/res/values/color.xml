@@ -6,4 +6,5 @@
     <color name="list_background_pressed">@color/background_material_light</color>
     <color name="list_item_title">@color/background_material_light</color>
     <color name="counter_text_color">@color/background_material_light</color>
+    <color name="white">#ffff</color>
 </resources>

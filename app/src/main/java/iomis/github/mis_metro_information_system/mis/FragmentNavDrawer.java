@@ -22,6 +22,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by felipe.gutierrez on 03/07/2015.
  */
@@ -96,7 +98,14 @@ public class FragmentNavDrawer extends Fragment {
             }
         });
         String [] menuItems = getResources().getStringArray(R.array.nav_drawer_items);
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
+
+        ArrayList <DrawerItem> items = new ArrayList<DrawerItem>();
+        items.add(new DrawerItem(menuItems[0],R.mipmap.ic_wallet));
+        items.add(new DrawerItem(menuItems[1],R.mipmap.ic_map));
+        items.add(new DrawerItem(menuItems[2],R.mipmap.ic_time));
+
+        mDrawerListView.setAdapter(new DrawerListAdapter(getActivity().getApplicationContext(), items));
+        /*mDrawerListView.setAdapter(new ArrayAdapter<String>(
                 getActionBar().getThemedContext(),
                 android.R.layout.simple_list_item_activated_1,
                 android.R.id.text1,
@@ -104,7 +113,7 @@ public class FragmentNavDrawer extends Fragment {
                         menuItems[0],
                         menuItems[1],
                         menuItems[2],
-                }));
+                }));*/
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
     }
