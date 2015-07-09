@@ -24,7 +24,7 @@ public class DbManager {
     //This is other comment
 
     public static final String CREATE_EXPENDS_TABLE = " create table " + EXPEND_TABLE + " ("
-            + CN_EXPEND_ID + " INTEGER primary key not null AUTO_INCREMENT,"
+            + CN_EXPEND_ID + " INTEGER primary key not null,"
             + CN_EXPEND_DATE +" TIMESTAMP not null,"
             + CN_EXPENDS + " DOUBLE );";
 
