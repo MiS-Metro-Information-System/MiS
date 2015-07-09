@@ -15,19 +15,20 @@ import android.util.Log;
  */
 public class DbProvider extends ContentProvider {
     private DbHelper dbHelper;
-    private static final int EXPENDS_LIST = 0;
-    private static final int EXPENDS_ID = 1;
-    private static final int ROUTE_LIST = 10;
-    private static final int ROUTE_ID = 11;
-    private static final UriMatcher URI_MATCHER;
+    public static final int EXPENDS_LIST = 0;
+    public static final int EXPENDS_ID = 1;
+    public static final int ROUTE_LIST = 10;
+    public static final int ROUTE_ID = 11;
+    private static final UriMatcher matcher = buildUriMatcher();
 
-    static {
-        URI_MATCHER = new UriMatcher(UriMatcher.NO_MATCH);
-        URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "expends", EXPENDS_LIST);
-        URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "expends/#", EXPENDS_ID);
-        URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "routes", ROUTE_LIST);
-        URI_MATCHER.addURI(DbContract.CONTENT_AUTHORITY, "routes/#", ROUTE_ID);
-        Log.d("Uri Matcher", "Pasa por la uri");
+    public static UriMatcher buildUriMatcher(){
+
+        UriMatcher curMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+        curMatcher.addURI(DbContract.CONTENT_AUTHORITY, "expends", EXPENDS_LIST);
+        curMatcher.addURI(DbContract.CONTENT_AUTHORITY, "expends/#", EXPENDS_ID);
+        curMatcher.addURI(DbContract.CONTENT_AUTHORITY, "routes", ROUTE_LIST);
+        curMatcher.addURI(DbContract.CONTENT_AUTHORITY, "routes/#", ROUTE_ID);
+        return curMatcher;
     }
 
     @Override
@@ -43,7 +44,7 @@ public class DbProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         SQLiteQueryBuilder builder = new SQLiteQueryBuilder();
         boolean useAuthorityUri = false;
-        switch (URI_MATCHER.match(uri)) {
+        switch (matcher.match(uri)) {
             case ROUTE_LIST:
                 builder.setTables(DbContract.RoutesEntry.TABLE_NAME);
                 if (TextUtils.isEmpty(sortOrder)) {
@@ -85,7 +86,7 @@ public class DbProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        switch (URI_MATCHER.match(uri)) {
+        switch (matcher.match(uri)) {
             case EXPENDS_LIST:
                 return DbContract.ExpendsEntry.CONTENT_TYPE;
             case EXPENDS_ID:
@@ -104,7 +105,7 @@ public class DbProvider extends ContentProvider {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         long id = -1;
         Uri returnUri;
-        switch (URI_MATCHER.match(uri)) {
+        switch (matcher.match(uri)) {
             case EXPENDS_LIST:
                 id = db.insert(DbContract.ExpendsEntry.TABLE_NAME, null, values);
                 if (id > 0) returnUri = DbContract.ExpendsEntry.buildUserUri(id);
@@ -128,7 +129,7 @@ public class DbProvider extends ContentProvider {
         int delCount = 0;
         String idStr;
         String where;
-        switch (URI_MATCHER.match(uri)) {
+        switch (matcher.match(uri)) {
             case EXPENDS_LIST:
                 delCount = db.delete(
                         DbContract.ExpendsEntry.TABLE_NAME,
@@ -181,7 +182,7 @@ public class DbProvider extends ContentProvider {
         int updateCount = 0;
         String idStr;
         String where;
-        switch (URI_MATCHER.match(uri)) {
+        switch (matcher.match(uri)) {
             case EXPENDS_LIST:
                 updateCount = db.update(
                         DbContract.ExpendsEntry.TABLE_NAME,
