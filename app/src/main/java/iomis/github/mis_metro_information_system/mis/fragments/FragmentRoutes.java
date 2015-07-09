@@ -1,4 +1,4 @@
-package iomis.github.mis_metro_information_system.mis;
+package iomis.github.mis_metro_information_system.mis.fragments;
 
 import android.graphics.Color;
 import android.location.Location;
@@ -19,6 +19,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import iomis.github.mis_metro_information_system.mis.R;
 
 /**
  * Created by felipe.gutierrez on 06/07/2015.

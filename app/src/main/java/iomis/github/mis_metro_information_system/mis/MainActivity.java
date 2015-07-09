@@ -19,6 +19,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import iomis.github.mis_metro_information_system.mis.fragments.FragmentRoutes;
+import iomis.github.mis_metro_information_system.mis.fragments.FragmentTime;
+import iomis.github.mis_metro_information_system.mis.fragments.FragmentWallet;
+
 
 public class MainActivity  extends ActionBarActivity
         implements FragmentNavDrawer.NavigationDrawerCallbacks {

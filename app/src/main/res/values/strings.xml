@@ -25,4 +25,6 @@
     <string name="label_wallet">Gastado :</string>
     <string name="content_authority">iomis.github.mis_metro_information_system.mis</string>
     <string name="setting_name">Configuración</string>
+    <string name="login_text">MiS - Sistema de información para el metro de Medellín</string>
+    <string name="logout_text">Cerrar Sesión cuenta</string>
 </resources>
