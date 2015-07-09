@@ -25,7 +25,7 @@ import iomis.github.mis_metro_information_system.mis.Oauth.GooglePlus;
 public class LoginActivity extends Activity implements View.OnClickListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private SignInButton btnSignInGoogle;
-    private GooglePlus gp;
+    public GooglePlus gp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

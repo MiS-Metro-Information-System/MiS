@@ -1,12 +1,12 @@
 package iomis.github.mis_metro_information_system.mis;
 
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import iomis.github.mis_metro_information_system.mis.Oauth.GooglePlus;
 
 /**
  * Created by felipe.gutierrez on 8/07/15.
@@ -25,10 +25,28 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.button_log_out:
-                GooglePlus.signOutFromGplus();
+                logout lg = new logout();
+                lg.logingOut();
                 break;
             default:
                 break;
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
+
+    private class logout extends LoginActivity{
+        public void logingOut(){
+           gp.signOutFromGplus();
         }
     }
 }

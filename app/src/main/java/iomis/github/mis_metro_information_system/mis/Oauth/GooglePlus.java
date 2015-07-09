@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -16,12 +17,12 @@ import com.google.android.gms.plus.Plus;
 public class GooglePlus {
     public static final int RC_SIGN_IN = 0;
     public ConnectionResult mConnectionResult;
-    public static SharedPreferences sharedPreferences;
+    public SharedPreferences sharedPreferences;
     public static final String googlePlusLoginStatus = "status";
     public boolean mIntentInProgress;;
     public static String plusGoogleConnection = "GooglePLusLogin";
     // Google client to interact with Google API
-    public static GoogleApiClient mGoogleApiClient;
+    public GoogleApiClient mGoogleApiClient;
     public boolean mSignInClicked;
     private static Activity activity;
     public GooglePlus(Activity activity){
@@ -30,12 +31,14 @@ public class GooglePlus {
     /**
      * Sign-out from google
      * */
-    public static void signOutFromGplus() {
+    public void signOutFromGplus() {
         if (mGoogleApiClient.isConnected()){
             sharedPreferences =  activity.getSharedPreferences(plusGoogleConnection, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(googlePlusLoginStatus, 0);
             editor.commit();
+            Toast.makeText(activity.getApplicationContext(),sharedPreferences.getInt(plusGoogleConnection, Context.MODE_PRIVATE),Toast.LENGTH_LONG).show();
+            Toast.makeText(activity.getApplicationContext(),"Loging out from MiS",Toast.LENGTH_LONG).show();
             Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
             mGoogleApiClient.disconnect();
             mGoogleApiClient.connect();
@@ -64,5 +67,4 @@ public class GooglePlus {
             }
         }
     }
-
 }
