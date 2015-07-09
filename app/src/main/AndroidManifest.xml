@@ -50,13 +50,10 @@
         <!--<meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC0hj-0gJ4ns82L5S0iiMwjialu3fbQCj4" />-->
+        <provider
+            android:authorities="@string/content_authority"
+            android:name=".data.DbProvider"
+            android:exported="false"
+            android:syncable="true"/>
     </application>
-    <provider
-        android:authorities="@string/content_authority"
-        android:name=".DataBase.DbProvider"
-        android:exported="true"
-        android:grantUriPermissions="true"
-        android:label="DbProvider"
-        android:readPermission="iomis.github.mis_metro_information_system.mis.DataBase.READ"
-        android:writePermission="iomis.github.mis_metro_information_system.mis.DataBase.WRITE" />
 </manifest>

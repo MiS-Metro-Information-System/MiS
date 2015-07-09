@@ -1,4 +1,4 @@
-package iomis.github.mis_metro_information_system.mis.DataBase;
+package iomis.github.mis_metro_information_system.mis.data;
 
 import android.content.ContentValues;
 import android.content.Context;

@@ -1,17 +1,13 @@
-package iomis.github.mis_metro_information_system.mis.DataBase;
+package iomis.github.mis_metro_information_system.mis.data;
 
 import android.content.ContentProvider;
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.text.TextUtils;
-
-import java.net.URI;
 
 /**
  * Created by esteban.foronda on 06/07/2015.
