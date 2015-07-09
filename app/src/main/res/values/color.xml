@@ -7,4 +7,5 @@
     <color name="list_item_title">@color/background_material_light</color>
     <color name="counter_text_color">@color/background_material_light</color>
     <color name="white">#ffff</color>
+    <color name="login_background">#424242</color>
 </resources>

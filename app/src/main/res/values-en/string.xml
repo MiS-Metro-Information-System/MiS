@@ -8,4 +8,6 @@
     </string-array>
     <string name="label_wallet">Spendings :</string>
     <string name="setting_name">Settings</string>
+    <string name="login_text">MiS - Metro Information System Medellín</string>
+    <string name="logout_text">Log Out account</string>
 </resources>

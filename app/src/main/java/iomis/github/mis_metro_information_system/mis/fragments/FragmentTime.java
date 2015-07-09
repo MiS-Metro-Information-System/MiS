@@ -1,4 +1,4 @@
-package iomis.github.mis_metro_information_system.mis;
+package iomis.github.mis_metro_information_system.mis.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import iomis.github.mis_metro_information_system.mis.R;
 
 /**
  * Created by felipe.gutierrez on 06/07/2015.
