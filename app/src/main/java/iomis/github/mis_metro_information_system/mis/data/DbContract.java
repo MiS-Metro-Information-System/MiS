@@ -56,7 +56,7 @@ public class DbContract {
         public static final String CONTENT_ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_EXPENDS;
 
-        public static final String TABLE_NAME = "Expends";
+        public static final String TABLE_NAME = "expends";
 
         public static final String COLUMN_EXPEND_ID = "expend_id";
         public static final String COLUMN_EXPEND = "expend";
