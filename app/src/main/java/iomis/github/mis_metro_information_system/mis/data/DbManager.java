@@ -28,8 +28,8 @@ public class DbManager {
             + CN_EXPEND_DATE +" TIMESTAMP not null,"
             + CN_EXPENDS + " DOUBLE );";
 
-    public static final String CREATE_TABLE_ROUTES = " create table "+ ROUTES_TABLE +" ("
-            + CN_ROUTE_ID + " INTEGER primary key autoincrement,"
+    public static final String CREATE_ROUTES_TABLE = " create table "+ ROUTES_TABLE +" ("
+            + CN_ROUTE_ID + " INTEGER primary key not null,"
             + CN_TIME + " DOUBLE not null,"
             + CN_ROUTE_NAME + " TEXT not null,"
             + CN_DESCRIPTION + " TEXT );";
@@ -44,14 +44,14 @@ public class DbManager {
          dbHelper = new DbHelper(context);
          db = dbHelper.getWritableDatabase();
     }
-    public ContentValues generateExpend(int id, String username, double expends){
+    public static ContentValues generateExpend(int id, String date, double expends){
         ContentValues contentValues = new ContentValues();
         contentValues.put(CN_EXPEND_ID, id);
-        contentValues.put(CN_EXPEND_DATE, username);
+        contentValues.put(CN_EXPEND_DATE, date);
         contentValues.put(CN_EXPENDS, expends);
         return  contentValues;
     }
-    public ContentValues generateRoutes(int id, double time, String name, String description){
+    public static ContentValues generateRoutes(int id, double time, String name, String description){
         ContentValues contentValues = new ContentValues();
         contentValues.put(CN_ROUTE_ID, id);
         contentValues.put(CN_TIME, time);
