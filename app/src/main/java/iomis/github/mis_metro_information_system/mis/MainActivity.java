@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import iomis.github.mis_metro_information_system.mis.fragments.FragmentRoutes;
+import iomis.github.mis_metro_information_system.mis.fragments.FragmentSpends;
 import iomis.github.mis_metro_information_system.mis.fragments.FragmentTime;
 import iomis.github.mis_metro_information_system.mis.fragments.FragmentWallet;
 
@@ -76,6 +77,9 @@ public class MainActivity  extends ActionBarActivity
                 break;
             case 3:
                 mTitle = menuItems[2];
+                break;
+            case 4:
+                mTitle = menuItems[3];
                 break;
         }
     }
@@ -159,6 +163,11 @@ public class MainActivity  extends ActionBarActivity
                 case 3:
                     Fragment fragmentTime = new FragmentTime();
                     rootView = fragmentTime.onCreateView(inflater, container, savedInstanceState);
+                    break;
+                case 4:
+                    Fragment fragmentSpends = new FragmentSpends();
+                    rootView = fragmentSpends.onCreateView(inflater, container, savedInstanceState);
+                    break;
             }
             return rootView;
         }

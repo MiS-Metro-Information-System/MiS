@@ -103,6 +103,8 @@ public class FragmentNavDrawer extends Fragment {
         items.add(new DrawerItem(menuItems[0],R.mipmap.ic_wallet));
         items.add(new DrawerItem(menuItems[1],R.mipmap.ic_map));
         items.add(new DrawerItem(menuItems[2],R.mipmap.ic_time));
+        items.add(new DrawerItem(menuItems[3],R.mipmap.ic_wallet));
+
 
         mDrawerListView.setAdapter(new DrawerListAdapter(getActivity().getApplicationContext(), items));
         /*mDrawerListView.setAdapter(new ArrayAdapter<String>(

@@ -5,9 +5,11 @@
         <item>Wallet</item>
         <item>Routes</item>
         <item>Time</item>
+        <item>Spends</item>
     </string-array>
     <string name="label_wallet">Spendings :</string>
     <string name="setting_name">Settings</string>
     <string name="login_text">MiS - Metro Information System Medellín</string>
     <string name="logout_text">Log Out account</string>
+    <string name="gastos_txt">New OutCome</string>
 </resources>

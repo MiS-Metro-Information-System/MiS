@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -47,44 +48,45 @@ public class FragmentRoutes extends Fragment implements LocationListener{
         mapView = (MapView)view.findViewById(R.id.map);
         mapView.onCreate(savedInstanceState);
         mapView.onResume();
-
-        try{
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        googleMap = mapView.getMap();
-
-        if(googleMap == null){}else{setUpMap();}
-
+        setUpMap();
         return view;
     }
 
-    private static void setUpMap() {
-        // For showing a move to my loction button
-        googleMap.setMyLocationEnabled(true);
-        /*latitude = googleMap.getMyLocation().getLatitude();
-        longitude = googleMap.getMyLocation().getLongitude();
-        // For dropping a marker at a point on the Map*/
-        // For zooming automatically to the Dropped PIN Location
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(6.185886, -75.585556), 12.0f));
-        int estation = metroEstationsNames.length-1;
-        for(int d = 0; d < coordenatesMetroStations.length; d+=2){
-            latitude = coordenatesMetroStations[d];
-            longitude = coordenatesMetroStations[d+1];
-            MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Estación "+
-                    metroEstationsNames[estation]).snippet("Information Station");
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
-            googleMap.addMarker(markerOptions);
-            estation--;
+    private void setUpMap() {
+        googleMap = mapView.getMap();
+        if(googleMap != null){
+            // For showing a move to my loction button
+            googleMap.setMyLocationEnabled(true);
+
+            int estation = metroEstationsNames.length-1;
+            for(int d = 0; d < coordenatesMetroStations.length; d+=2){
+                latitude = coordenatesMetroStations[d];
+                longitude = coordenatesMetroStations[d+1];
+                MarkerOptions markerOptions = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Estación "+
+                        metroEstationsNames[estation]).snippet("Information Station");
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                googleMap.addMarker(markerOptions);
+                estation--;
+            }
+            PolylineOptions polylineOptions = new PolylineOptions();
+            polylineOptions.width(5);
+            polylineOptions.color(Color.parseColor("#00FF00"));
+            for(int i = 0; i < coordenatesMetroStations.length; i=i+2){
+                polylineOptions.add(new LatLng(coordenatesMetroStations[i], coordenatesMetroStations[i+1]));
+            }
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(6.185886, -75.585556), 12.0f));
+                googleMap.addPolyline(polylineOptions);
+
+            return;
+        }else{
+            try{
+                MapsInitializer.initialize(getActivity().getApplicationContext());
+            }catch (Exception e){
+                e.printStackTrace();
+                return;
+            }
+            new initMapTask().execute();
         }
-        PolylineOptions polylineOptions = new PolylineOptions();
-        polylineOptions.width(5);
-        polylineOptions.color(Color.parseColor("#00FF00"));
-        for(int i = 0; i < coordenatesMetroStations.length; i=i+2){
-            polylineOptions.add(new LatLng(coordenatesMetroStations[i], coordenatesMetroStations[i+1]));
-        }
-        googleMap.addPolyline(polylineOptions);
     }
     @Override
     public void onResume() {
@@ -133,5 +135,17 @@ public class FragmentRoutes extends Fragment implements LocationListener{
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+    final class initMapTask extends AsyncTask<Void, Void, Void>{
+        @Override
+        protected Void doInBackground(Void... params) {
+            //Get Markets data from Server
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 }
