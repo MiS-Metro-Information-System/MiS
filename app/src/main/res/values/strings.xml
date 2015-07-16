@@ -29,4 +29,7 @@
     <string name="login_text">MiS - Sistema de información para el metro de Medellín</string>
     <string name="logout_text">Cerrar Sesión cuenta</string>
     <string name="gastos_txt">Nuevos Gastos</string>
+    <string name="input_spend">Nuevo Gasto</string>
+    <string name="btn_add_spend">Guardar Gasto</string>
+    <string name="btn_new_spend">Nuevo Gasto</string>
 </resources>

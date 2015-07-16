@@ -8,4 +8,5 @@
     <color name="counter_text_color">@color/background_material_light</color>
     <color name="white">#ffff</color>
     <color name="login_background">#424242</color>
+    <color name="button_color">#ffff5f62</color>
 </resources>
